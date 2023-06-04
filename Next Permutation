@@ -1,0 +1,31 @@
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &permutation, int n)
+{
+    //  Write your code here
+    int i=n-2,j=n-1;
+    bool flag=false;
+    while(i>=0){
+        if(permutation[i]<permutation[j]){
+            flag=true;
+            int k=permutation[i];
+            int ng=j;
+            //finding next greater element
+            for(int s=j+1;s<n;s++){
+                if(permutation[s]>k&&permutation[s]<permutation[ng])
+                ng=s;
+            }
+            //swap k,ng
+            permutation[i]=permutation[ng];
+            permutation[ng]=k;
+            sort(permutation.begin()+j,permutation.end());
+            break;
+
+        }
+        
+        i--;j--;
+    }
+    if(flag==false){
+            sort(permutation.begin(),permutation.end());
+        }
+    return permutation;
+}

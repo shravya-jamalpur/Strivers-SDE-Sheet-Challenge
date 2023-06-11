@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+void fun(int n, vector<int> &arr,int i,set<vector<int>>&s,vector<int>c){
+    if(i==n){
+        if(s.find(c)==s.end()){
+            s.insert(c);
+        }
+        return;
+    }
+    fun(n,arr,i+1,s,c);
+    c.push_back(arr[i]);
+    fun(n,arr,i+1,s,c);
+}
+vector<vector<int>> uniqueSubsets(int n, vector<int> &arr)
+{
+    // Write your code here.
+    set<vector<int>>s;
+    vector<int>c;
+    sort(arr.begin(),arr.end());
+    fun(n,arr,0,s,c);
+    vector<vector<int>>ans;
+    for(auto v:s){
+        ans.push_back(v);
+    }
+    return ans;
+}

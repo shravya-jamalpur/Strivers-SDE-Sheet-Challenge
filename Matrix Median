@@ -1,0 +1,28 @@
+int getMedian(vector<vector<int>> &matrix)
+{
+    // Write your code here.
+    int n=matrix.size();
+    int m=matrix[0].size();
+    int count=0;
+    int ans=((m*n)/2)+1;
+    vector<int>arr(n,0);
+    while(1){
+        int minind=0;
+        for(int k=1;k<arr.size();k++){
+            if(matrix[k][arr[k]]<matrix[minind][arr[minind]]){
+                minind=k;
+            }
+        }
+        count++;
+        if(count==ans){
+          return matrix[minind][arr[minind]];
+
+        }
+         arr[minind]++;
+         if (arr[minind] == m) {
+           matrix[minind][m - 1] = 100001;
+            arr[minind]--;
+         }
+        //arr[minind]=matrix[minind][arr[minind]+1];
+    }
+}
